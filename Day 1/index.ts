@@ -13,13 +13,11 @@ console.log(`Day 1 Puzzle 1: ${input.reduce((prev, curr) => {
 const matches = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
 console.log(`Day 1 Puzzle 2: ${input.reduce((prev, curr) => {
-    for(let match of matches) {
-        const matchNumberStr =  `${matches.indexOf(match) + 1}`;
+    for(const [index, match] of matches.entries()) {
         while (curr.includes(match))  {
-            let split = curr.split("");
-            let indexMatch = curr.indexOf(match);
-            const a = `${split.slice(0, indexMatch + 1).join("")}${matchNumberStr}${split.slice(indexMatch + 2).join("")}`;
-            curr = a;
+            const split = curr.split("");
+            const indexMatch = curr.indexOf(match);
+            curr = `${split.slice(0, indexMatch + 1).join("")}${index + 1}${split.slice(indexMatch + 2).join("")}`;
         }
     } 
     const numbers = curr.replaceAll(/\D/g, '');
